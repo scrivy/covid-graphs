@@ -14,7 +14,7 @@ df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
 march1st = datetime.datetime(2020, 3, 1, 0, 0, 0, 0)
 df = df.loc[df['date'] > march1st]
 
-states_to_render = ['California', 'Washington', 'New York']
+states_to_render = ['California', 'Washington', 'New York', 'Wyoming', 'Utah', 'Connecticut', 'North Carolina']
 for state in states_to_render:
     state_path = base_path + state
     if not os.path.exists(state_path):
