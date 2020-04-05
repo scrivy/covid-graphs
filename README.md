@@ -1,2 +1,2 @@
 # covid-graphs
-Per county total and new daily cases of covid cases
+Per county totals and new daily covid cases
