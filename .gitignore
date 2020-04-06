@@ -131,4 +131,6 @@ dmypy.json
 # vim swap files
 *.swp
 
-public_html/
+public_html/*
+!public_html/index.html
+!public_html/index.js

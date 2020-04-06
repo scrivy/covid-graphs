@@ -3,29 +3,36 @@ from bokeh.models import ColumnDataSource
 from bokeh.palettes import Spectral3
 from bokeh.models.tools import HoverTool
 import datetime
+import json
 import os
 import pandas as pd
 
-base_path = 'public_html/'
+base_output_path = 'public_html/'
 
 # load data
 df = pd.read_csv('covid-19-data/us-counties.csv')
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-march1st = datetime.datetime(2020, 3, 1, 0, 0, 0, 0)
-df = df.loc[df['date'] > march1st]
+march8 = datetime.datetime(2020, 3, 8, 0, 0, 0, 0)
+df = df.loc[df['date'] > march8]
 
-states_to_render = ['California', 'Washington', 'New York', 'Wyoming', 'Utah', 'Connecticut', 'North Carolina']
+# used to populate html dropdowns
+states_and_counties = {}
+
+states_to_render = ['California', 'Connecticut', 'New York', 'North Carolina', 'Washington', 'Utah', 'Wyoming']
 for state in states_to_render:
-    state_path = base_path + state
+    state_path = base_output_path + state
     if not os.path.exists(state_path):
         os.makedirs(state_path)
 
     state_frame = df.loc[df['state'] == state]
-    for county in state_frame.county.unique():
+
+    counties = state_frame.county.unique().tolist()
+    states_and_counties[state] = counties
+    for county in counties:
         output_file(state_path + '/' + county + '.html', title=county + ' County Covid Cases')
 
         county_frame = state_frame.loc[state_frame['county'] == county]
-        county_frame['new_cases'] = county_frame.sort_values(by='date').loc[:, 'cases'].diff()
+        county_frame = county_frame.assign(new_cases=county_frame.sort_values(by='date').loc[:, 'cases'].diff())
 
         source = ColumnDataSource(county_frame)
 
@@ -40,13 +47,17 @@ for state in states_to_render:
 
         hover = HoverTool()
         hover.tooltips=[
-        #    ('Date', '@DateTime{%F}'),
+#            ('Date', '@date{%F}'),
             ('Total', '@cases'),
             ('New Cases', '@new_cases'),
         ]
-        #hover.formatters = {'DateTime': 'date'}
+#        hover.formatters = {'Date': 'datetime'}
 
         p.add_tools(hover)
         p.legend.location = 'top_left'
 
         save(p)
+
+# save states and counties
+with open(base_output_path + 'states_and_countise.json', 'w') as fp:
+    json.dump(states_and_counties, fp)
