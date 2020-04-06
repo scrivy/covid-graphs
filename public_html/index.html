@@ -5,24 +5,18 @@
 		<title>County by County Covid Graphs</title>
 		<meta name="description" content="County by County Covid Graphs">
 		<meta name="author" content="Daniel Scrivano">
-		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 </head>
-<body style="width: 600px;">
+<body>
 <h2>County by County Covid Graphs</h2>
 
-<form>
-		<fieldset data-role="controlgroup">
-				<select name="state" id="state">
-					<option>--Select a State--</option>
-				</select>
-				<select name="county" id="county"></select>
-		</fieldset>
-</form>
-
+<select name="state" id="state">
+		<option>--Select a State--</option>
+</select>
+<select name="county" id="county"></select>
+<br />
 <iframe style="position: absolute; width: 100%; height: 620px; border: none;"></iframe>
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="index.js"></script>
 </body>
 </html>
