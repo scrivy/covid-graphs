@@ -27,6 +27,7 @@ for state in states_to_render:
     state_frame = df.loc[df['state'] == state]
 
     counties = state_frame.county.unique().tolist()
+    counties.sort()
     states_and_counties[state] = counties
     for county in counties:
         output_file(state_path + '/' + county + '.html', title=county + ' County Covid Cases')
