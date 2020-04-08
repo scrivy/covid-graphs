@@ -18,8 +18,9 @@ df = df.loc[df['date'] > march8]
 # used to populate html dropdowns
 states_and_counties = {}
 
-states_to_render = ['California', 'Connecticut', 'New York', 'North Carolina', 'Washington', 'Utah', 'Wyoming']
-for state in states_to_render:
+states = df.state.unique().tolist()
+states.sort()
+for state in states:
     state_path = base_output_path + state
     if not os.path.exists(state_path):
         os.makedirs(state_path)
