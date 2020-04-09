@@ -41,7 +41,8 @@ for state in states:
         p = figure(x_axis_type='datetime')
 
         p.line(x='date', y='cases', line_width=2, source=source, legend_label='Total')
-        p.vbar(x='date', top='new_cases', width=1, source=source, legend_label='New Cases', color='#FF0000')
+        p.vbar(x='date', top='new_cases', line_width=5, source=source, legend_label='New Cases', color='#FF0000')
+        p.line(x='date', y='deaths', line_width=2, source=source, legend_label='Deaths', color='#000000')
 
         p.title.text = county + ' County Confirmed Covid Cases'
         p.xaxis.axis_label = 'Date'
@@ -52,6 +53,7 @@ for state in states:
 #            ('Date', '@date{%F}'),
             ('Total', '@cases'),
             ('New Cases', '@new_cases'),
+            ('Deaths', '@deaths'),
         ]
 #        hover.formatters = {'Date': 'datetime'}
 
