@@ -5,11 +5,13 @@ let countySelect = $('select#county')
 let iframe = $('iframe')
 
 let lastState, currentState
-let selectCounty = '<option selected>--Select a County--</option>'
+let selectCounty = '<option selected disabled>--Select a County--</option>'
 stateSelect.change(function() {
 	currentState = stateSelect.val()
 	if (currentState !== lastState) {
 		lastState = currentState
+
+		iframe.attr('src', currentState + '.html')
 
 		countySelect.empty()
 		countySelect.append(selectCounty)
