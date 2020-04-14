@@ -87,6 +87,9 @@ for state in states:
         render_graph(state_path + '/' + county + '.html', county + ' County Covid Cases', county_frame)
 
 # save states and counties
-with open(base_output_path + 'states_and_countise.json', 'w') as fp:
-    json.dump(states_and_counties, fp)
+with open(base_output_path + 'states_and_counties.json', 'w') as fp:
+    json.dump({
+        "updated_at": datetime.datetime.now().__str__(),
+        "states_and_counties": states_and_counties,
+        }, fp)
 

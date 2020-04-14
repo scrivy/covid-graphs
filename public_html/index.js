@@ -1,4 +1,3 @@
-// garbage
 let statesAndCounties = {}
 let stateSelect = $('select#state')
 let countySelect = $('select#county')
@@ -34,10 +33,11 @@ countySelect.change(function() {
 	}
 })
 
-$.getJSON('states_and_countise.json')
+$.getJSON('states_and_counties.json')
 	.done(function(data) {
-		statesAndCounties = data
-		Object.keys(data).forEach(function(state) {
+		$('p').text('updated at: ' + data.updated_at)
+		statesAndCounties = data.states_and_counties
+		Object.keys(statesAndCounties).forEach(function(state) {
 			stateSelect.append('<option value="' + state + '">' + state + '</option>')
 		})
 	})
