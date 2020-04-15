@@ -89,7 +89,7 @@ for state in states:
 # save states and counties
 with open(base_output_path + 'states_and_counties.json', 'w') as fp:
     json.dump({
-        "updated_at": datetime.datetime.now().__str__(),
-        "states_and_counties": states_and_counties,
+        'updated_at': datetime.datetime.now().__str__() + ' UTC',
+        'states_and_counties': states_and_counties,
         }, fp)
 
