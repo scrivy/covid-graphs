@@ -38,13 +38,13 @@ def render_graph(output_file_path, title, data_frame):
 
 # actually do stuff
 base_output_path = 'public_html/'
-march8 = datetime.datetime(2020, 3, 8, 0, 0, 0, 0)
+start_date = datetime.datetime(2020, 4, 1, 0, 0, 0, 0)
 states_and_counties = {} # used to populate html dropdowns
 
 # render state graphs
 df = pd.read_csv('covid-19-data/us-states.csv')
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-df = df.loc[df['date'] > march8]
+df = df.loc[df['date'] > start_date]
 
 states = df.state.unique().tolist()
 states.sort()
@@ -68,7 +68,7 @@ render_graph(base_output_path + 'all_states.html', 'United States Covid Cases', 
 # render county graphs
 df = pd.read_csv('covid-19-data/us-counties.csv')
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-df = df.loc[df['date'] > march8]
+df = df.loc[df['date'] > start_date]
 
 states = df.state.unique().tolist()
 states.sort()
