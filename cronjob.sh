@@ -15,6 +15,6 @@ if ! diff -q {last,current}-commit || ! diff -q {last,current}-submodule
 then
 	date
 	echo 'generating graphs.....'
-	~/.local/bin/pipenv run python generate_graphs.py
+	pipenv run python generate_graphs.py
 	echo 'done'
 fi
