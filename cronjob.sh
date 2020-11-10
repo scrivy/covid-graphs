@@ -6,7 +6,7 @@ git log -1 > last-commit
 git submodule status > last-submodule
 
 git pull -q
-git submodule update --remote
+git submodule update --remote --depth 1
 
 git log -1 > current-commit
 git submodule status > current-submodule
