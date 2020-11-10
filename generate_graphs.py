@@ -38,7 +38,7 @@ def render_graph(output_file_path, title, data_frame):
 
 # actually do stuff
 base_output_path = 'public_html/'
-start_date = datetime.datetime(2020, 8, 15, 0, 0, 0, 0)
+start_date = datetime.datetime(2020, 9, 1, 0, 0, 0, 0)
 states_and_counties = {} # used to populate html dropdowns
 
 # render state graphs
